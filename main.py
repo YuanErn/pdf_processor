@@ -1,9 +1,16 @@
 from pdfreader import PDFDocument
 import os
+from tqdm import tqdm 
 
-# File Directory here
-directory = r""
+# Specify file directory here
+pdf_path = r""
+
+# Target export file
+export_file = r""
+
+# Preprocessing
 files = []
+directory = r"C:\Users\Yuan Ern\Desktop\IEOL"
 for filename in os.listdir(directory):
     if filename.endswith('.pdf'):
         filepath = os.path.abspath(directory) + "\\" + filename
@@ -25,18 +32,17 @@ def get_pdf_page_dimensions(pdf_path):
         else:
             portrait += 1
         
-    page_info = {
-        'filename': pdf_path,
-        'landscape': landscape,
-        'portrait': portrait
-    }
+    page_info = f"filename: {pdf_path}  |  landscape: {landscape}  |  portrait: {portrait}"
 
     return page_info
 
-# The loop for processing
+# Execution
 file_data = []
-for files_tp in files:
-    data = get_pdf_page_dimensions(files_tp)
-    file_data.append(data)
+export_location = open(export_file, "w")
+for files_tp in tqdm(files, desc="Processing PDF files"):
+    data = get_pdf_page_dimensions(files_tp) + "\n"
+    export_location.write(data)
 
-print(file_data)
+export_location.close()
+
+
