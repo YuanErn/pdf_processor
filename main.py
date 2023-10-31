@@ -1,12 +1,12 @@
-from pdfreader import PDFDocument
+from pypdf import PdfReader
 import os
 from tqdm import tqdm 
 
 # Specify file directory here
-directory = r""
+directory = r"C:\Users\Yuan Ern\Desktop\IEOL"
 
 # Target export file
-export_file = r""
+export_file = r"C:\Users\Yuan Ern\Desktop\IEOL\pdf.txt"
 
 # Preprocessing
 files = []
@@ -17,14 +17,12 @@ for filename in os.listdir(directory):
 
 # Magic here
 def get_pdf_page_dimensions(pdf_path):
-    pdf = PDFDocument(open(pdf_path, 'rb'))
+    reader = PdfReader(pdf_path)
     portrait, landscape = 0, 0 
 
-    all_pages = [p for p in pdf.pages()]
-
-    for page in all_pages:
-        page_width = page.MediaBox[2]
-        page_height = page.MediaBox[3]
+    for page_num in range(len(reader.pages)):
+        page_width = reader.pages[page_num].mediabox[2]
+        page_height = reader.pages[page_num].mediabox[3]
 
         if page_width > page_height:
             landscape += 1
