@@ -3,14 +3,13 @@ import os
 from tqdm import tqdm 
 
 # Specify file directory here
-pdf_path = r""
+directory = r""
 
 # Target export file
 export_file = r""
 
 # Preprocessing
 files = []
-directory = r"C:\Users\Yuan Ern\Desktop\IEOL"
 for filename in os.listdir(directory):
     if filename.endswith('.pdf'):
         filepath = os.path.abspath(directory) + "\\" + filename
@@ -33,7 +32,6 @@ def get_pdf_page_dimensions(pdf_path):
             portrait += 1
         
     page_info = f"filename: {pdf_path}  |  landscape: {landscape}  |  portrait: {portrait}"
-
     return page_info
 
 # Execution
