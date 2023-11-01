@@ -3,10 +3,10 @@ import os
 from tqdm import tqdm 
 
 # Specify file directory here
-directory = r"C:\Users\Yuan Ern\Desktop\IEOL"
+directory = r""
 
 # Target export file
-export_file = r"C:\Users\Yuan Ern\Desktop\IEOL\pdf.txt"
+export_file = r""
 
 # Preprocessing
 files = []
